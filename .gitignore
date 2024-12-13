@@ -1,0 +1,29 @@
+# Node modules
+node_modules/
+
+# .env files
+.env
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+
+# IDE and editor settings
+.vscode/
+.idea/
+
+# Dependency directories
+npm/
+yarn/
+
+# Build output
+/dist
+/build
+
+# Other potentially sensitive files
+*.env.*
