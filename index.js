@@ -21,7 +21,9 @@ app.use(session({
     resave: false,
     saveUninitialized: false,
     store: MongoStore.create({ mongoUrl: `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@ecommerce.lbwne.mongodb.net/ecommerce` }),
-    cookie: { maxAge: 1000 * 60 * 60 * 24 }
+    cookie: { maxAge: 1000 * 60 * 60 * 24 },
+    autoRemove: 'interval',
+    autoRemoveInterval: 10
     }));
 
 app.use(router);
