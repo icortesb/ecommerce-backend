@@ -42,6 +42,16 @@ class UserController {
         req.session.destroy();
         res.status(200).json({ message: "User logged out" });
     }
+
+    deleteUser = async (req, res) => {
+        try {
+            const { id } = req.params;
+            await this.userService.deleteUser(id);
+            res.status(200).json({ message: "User deleted" });
+        } catch (error) {
+            res.status(400).json({ message: error.message });
+        }
+    }
 }
 
 export default UserController;

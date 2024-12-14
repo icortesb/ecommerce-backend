@@ -9,4 +9,4 @@ authRouter.post("/register", userController.registerUser);
 authRouter.post("/login", userController.loginUser);
 authRouter.post("/logout", userController.logoutUser);
 
-export { authRouter };
+export default authRouter;

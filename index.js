@@ -3,8 +3,7 @@ import cors from 'cors';
 import Database from './src/dao/mongo/db/db.js';
 import session from 'express-session';
 import MongoStore from 'connect-mongo';
-
-import { router } from './src/routes/index.routes.js';
+import router from './src/routes/index.routes.js';
 
 process.loadEnvFile('.env');
 
