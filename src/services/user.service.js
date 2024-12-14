@@ -1,5 +1,10 @@
-import User from '../dao/mongo/models/user.model.js';
-import { isEmpty, hashPassword, validateEmail, validatePassword } from '../utils/utils.js';
+import User from "../dao/mongo/models/user.model.js";
+import {
+    isEmpty,
+    hashPassword,
+    validateEmail,
+    validatePassword,
+} from "../utils/utils.js";
 
 class UserService {
     constructor(userDao) {
@@ -17,10 +22,10 @@ class UserService {
                     throw new Error("Name is required");
                 case isEmpty(user.email):
                     throw new Error("Email is required");
-                case isEmpty(user.password):
-                    throw new Error("Password is required");
                 case !validateEmail(user.email):
                     throw new Error("Invalid email");
+                case isEmpty(user.password):
+                    throw new Error("Password is required");
                 case !validatePassword(user.password):
                     throw new Error("Password must have at least 8 characters");
             }
@@ -44,34 +49,36 @@ class UserService {
 
     async getUserById(id) {
         try {
-            return await User
-                .findById(id)
+            return await User.findById(id);
         } catch (error) {
-            console.error("An error ocurred while getting a user by id:", error);
+            console.error(
+                "An error ocurred while getting a user by id:",
+                error
+            );
             throw error;
         }
     }
 
     async getUserByEmail(email) {
         try {
-            return await
-                User.findOne({ email
-                });
-        }
-        catch (error) {
-            console.error("An error ocurred while getting a user by email:", error);
+            return await User.findOne({email});
+        } catch (error) {
+            console.error(
+                "An error ocurred while getting a user by email:",
+                error
+            );
             throw error;
         }
     }
 
     async getUserByUsername(username) {
         try {
-            return await
-                User.findOne({ username
-                });
-        }
-        catch (error) {
-            console.error("An error ocurred while getting a user by username:", error);
+            return await User.findOne({username});
+        } catch (error) {
+            console.error(
+                "An error ocurred while getting a user by username:",
+                error
+            );
             throw error;
         }
     }
@@ -83,6 +90,8 @@ class UserService {
             }
 
             switch (true) {
+                case isEmpty(user.username):
+                    throw new Error("Username is required");
                 case isEmpty(user.name):
                     throw new Error("Name is required");
                 case isEmpty(user.email):
@@ -96,7 +105,7 @@ class UserService {
             }
 
             user.password = await hashPassword(user.password);
-            return await User.findByIdAndUpdate(id, user, { new: true });
+            return await User.findByIdAndUpdate(id, user, {new: true});
         } catch (error) {
             console.error("An error ocurred while updating a user:", error);
             throw error;
