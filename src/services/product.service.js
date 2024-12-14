@@ -1,8 +1,9 @@
 import Product from "../dao/mongo/models/product.model.js";
+import { isEmpty } from "../utils/utils.js";
 
 class ProductService {
-    constructor(userDao) {
-        this.userDao = userDao;
+    constructor(productDao) {
+        this.productDao = productDao;        
     }
 
     async createProduct(product) {
@@ -12,15 +13,15 @@ class ProductService {
             }
 
             switch (true) {
-                case !product.name || product.name.trim() === "":
+                case isEmpty(product.name):
                     throw new Error("Name is required");
-                case !product.description || product.description.trim() === "":
+                case isEmpty(product.description):
                     throw new Error("Description is required");
-                case !product.price || product.price <= 0:
+                case isEmpty(product.price):
                     throw new Error("Price is required");
-                case !product.stock || product.stock <= 0:
+                case isEmpty(product.stock):
                     throw new Error("Stock is required");
-                case !product.image || product.image.trim() === "":
+                case isEmpty(product.image):
                     throw new Error("Image is required");
             }
 
@@ -58,16 +59,16 @@ class ProductService {
                 throw new Error("Product is required");
             }
 
-            switch (true) {
-                case !product.name || product.name.trim() === "":
+          switch (true) {
+                case isEmpty(product.name):
                     throw new Error("Name is required");
-                case !product.description || product.description.trim() === "":
+                case isEmpty(product.description):
                     throw new Error("Description is required");
-                case !product.price || product.price <= 0:
+                case isEmpty(product.price):
                     throw new Error("Price is required");
-                case !product.stock || product.stock <= 0:
+                case isEmpty(product.stock):
                     throw new Error("Stock is required");
-                case !product.image || product.image.trim() === "":
+                case isEmpty(product.image):
                     throw new Error("Image is required");
             }
 
