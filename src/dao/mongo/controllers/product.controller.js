@@ -1,11 +1,11 @@
-import ProductService from "../../services/product.service.js";
+import ProductService from "../../../services/product.service.js";
 
-class ProductManager {
+class ProductController {
     constructor() {
         this.productService = new ProductService();
     }
 
-    async createProduct(req, res) {
+    createProduct = async (req, res) => {
         try {
             const product = req.body;
             const newProduct = await this.productService.createProduct(product);
@@ -13,18 +13,18 @@ class ProductManager {
         } catch (error) {
             res.status(400).json({ message: error.message });
         }
-    }
+    };
 
-    async getProducts(req, res) {
+    getProducts = async (req, res) => {
         try {
             const products = await this.productService.getProducts();
             res.status(200).json(products);
         } catch (error) {
             res.status(400).json({ message: error.message });
         }
-    }
+    };
 
-    async getProductById(req, res) {
+    getProductById = async (req, res) => {
         try {
             const { id } = req.params;
             const product = await this.productService.getProductById(id);
@@ -32,9 +32,9 @@ class ProductManager {
         } catch (error) {
             res.status(400).json({ message: error.message });
         }
-    }
+    };
 
-    async updateProduct(req, res) {
+    updateProduct = async (req, res) => {
         try {
             const { id } = req.params;
             const product = req.body;
@@ -43,9 +43,9 @@ class ProductManager {
         } catch (error) {
             res.status(400).json({ message: error.message });
         }
-    }
+    };
 
-    async deleteProduct(req, res) {
+    deleteProduct = async (req, res) => {
         try {
             const { id } = req.params;
             await this.productService.deleteProduct(id);
@@ -53,5 +53,7 @@ class ProductManager {
         } catch (error) {
             res.status(400).json({ message: error.message });
         }
-    }
+    };
 }
+
+export default ProductController;
