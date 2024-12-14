@@ -17,9 +17,9 @@ class UserController {
     };
 
     loginUser = async (req, res) => {
-        const { user, password } = req.body;
+        const { username, password } = req.body;
         try {
-            const userFound = await this.userService.getUserByEmail(user);
+            const userFound = await this.userService.getUserByUsername(username);
             if (!userFound) {
                 throw new Error("User not found");
             }

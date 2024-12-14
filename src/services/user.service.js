@@ -64,6 +64,18 @@ class UserService {
         }
     }
 
+    async getUserByUsername(username) {
+        try {
+            return await
+                User.findOne({ username
+                });
+        }
+        catch (error) {
+            console.error("An error ocurred while getting a user by username:", error);
+            throw error;
+        }
+    }
+
     async updateUser(id, user) {
         try {
             if (!user) {
