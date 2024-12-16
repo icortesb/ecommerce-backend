@@ -27,9 +27,3 @@ yarn/
 
 # Other potentially sensitive files
 *.env.*
-.vercel
-
-# Vercel
-.vercel
-
-functions
