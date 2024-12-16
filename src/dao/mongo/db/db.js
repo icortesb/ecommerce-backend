@@ -9,7 +9,7 @@ class Database {
 
     async connect() {
         try {
-            await mongoose.connect(`mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@ecommerce.lbwne.mongodb.net/ecommerce`);
+            await mongoose.connect(process.env.MONGODB_URI);
             console.log("Conexión exitosa a la base de datos");
         } catch (error) {
             console.error("Error al conectar a la base de datos:", error);

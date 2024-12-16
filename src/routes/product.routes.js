@@ -5,6 +5,7 @@ import checkRole from "../middleware/checkRole.js";
 const productRouter = Router();
 const productController = new ProductController();
 
+
 productRouter.get("/allProducts", productController.getProducts);
 productRouter.get("/:id", productController.getProductById);
 productRouter.post("/", checkRole(['admin', 'superadmin']), productController.createProduct);
