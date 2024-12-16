@@ -31,3 +31,5 @@ yarn/
 
 # Vercel
 .vercel
+
+functions
