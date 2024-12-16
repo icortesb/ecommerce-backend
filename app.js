@@ -5,7 +5,6 @@ import session from "express-session";
 import MongoStore from "connect-mongo";
 import router from "./src/routes/index.routes.js";
 import dotenv from "dotenv";
-import ServerlessHttp from "serverless-http";
 
 dotenv.config();
 dotenv.config({path: ".env"});
@@ -47,12 +46,9 @@ app.get("/favicon.png", (req, res) => {
     res.status(204).end(); // Sin contenido
 });
 
-// app.use(router);
-app.use('/.netlify/functions/api', router);
+app.use(router);
 
 app.listen(process.env.PORT || 8080, () => {
     console.log(`Server is running on port ${process.env.PORT || 8080}`);
     Database.getInstance();
 });
-
-export const handler = ServerlessHttp(app);
