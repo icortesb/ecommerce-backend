@@ -4,6 +4,7 @@ import {
     hashPassword,
     validateEmail,
     validatePassword,
+    comparePasswords
 } from "../utils/utils.js";
 
 class UserService {
@@ -119,6 +120,19 @@ class UserService {
             console.error("An error ocurred while deleting a user:", error);
             throw error;
         }
+    }
+    async authenticate(username, password) {
+        const user = await User.findOne({ username });
+        if (!user) {
+            throw new Error("User not found");
+        }
+
+        const validPassword = await bcrypt.compare(password, user.password);
+        if (!validPassword) {
+            throw new Error("Invalid password");
+        }
+
+        return user;
     }
 }
 
