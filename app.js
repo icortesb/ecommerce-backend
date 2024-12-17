@@ -25,7 +25,7 @@ app.use(
         resave: false,
         saveUninitialized: false,
         store: MongoStore.create({
-            mongoUrl: `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@ecommerce.lbwne.mongodb.net/ecommerce`,
+            mongoUrl: `${process.env.MONGODB_URI}`,
         }),
         cookie: {
             // secure: true, HTTPS
